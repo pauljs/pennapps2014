@@ -1,22 +1,19 @@
 package com.example.finance;
 
-import java.util.Set;
-
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.content.SharedPreferences;
 
 /**
  * A dummy fragment representing a section of the app, but that simply displays dummy text.
@@ -40,7 +37,9 @@ public class CurrentStocksFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getActivity(), listAdapter.getItem(position), Toast.LENGTH_LONG).show();
+				Intent intent = new Intent(getActivity(), NewsfeedActivity.class);
+				intent.putExtra("company", listAdapter.getItem(position));
+				startActivity(intent);
 			}
 		});
 		stocksListView.setOnItemLongClickListener(new OnItemLongClickListener() {

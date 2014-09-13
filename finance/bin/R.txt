@@ -238,7 +238,7 @@ int id action_context_bar 0x7f05001d
 int id action_menu_divider 0x7f050016
 int id action_menu_presenter 0x7f050017
 int id action_mode_close_button 0x7f050024
-int id action_settings 0x7f050048
+int id action_settings 0x7f050049
 int id activity_chooser_view_content 0x7f050025
 int id addHighPriorityAlertBtn 0x7f050045
 int id addStockBtn 0x7f050040
@@ -268,6 +268,7 @@ int id listMode 0x7f050001
 int id list_item 0x7f050029
 int id middle 0x7f050012
 int id never 0x7f050009
+int id newsfeedListView 0x7f050048
 int id none 0x7f050010
 int id normal 0x7f050000
 int id notifyBtn 0x7f05003e
@@ -332,7 +333,8 @@ int layout fragment_main 0x7f03001b
 int layout fragment_section_dummy 0x7f03001c
 int layout fragment_section_launchpad 0x7f03001d
 int layout high_priority_alerts 0x7f03001e
-int layout support_simple_spinner_dropdown_item 0x7f03001f
+int layout newsfeed 0x7f03001f
+int layout support_simple_spinner_dropdown_item 0x7f030020
 int menu main 0x7f0c0000
 int string abc_action_bar_home_description 0x7f0a0001
 int string abc_action_bar_up_description 0x7f0a0002
