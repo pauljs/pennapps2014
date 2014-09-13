@@ -108,7 +108,7 @@ public class CurrentStocksFragment extends Fragment {
     	
     	String newCompany = stockEditText.getText().toString();
     	SharedPreferences.Editor editor = settings.edit();
-    	editor.putString(newCompany, newCompany);
+    	editor.putString("currentStock" + newCompany, newCompany);
     	listAdapter.add(stockEditText.getText().toString());
 		Toast.makeText(getActivity(), "Added", Toast.LENGTH_LONG).show();
 		stockEditText.setText("");

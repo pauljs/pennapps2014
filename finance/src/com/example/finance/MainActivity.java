@@ -72,15 +72,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // user swipes between sections.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mAppSectionsPagerAdapter);
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                // When swiping between different app sections, select the corresponding tab.
-                // We can also use ActionBar.Tab#select() to do this if we have a reference to the
-                // Tab.
-                actionBar.setSelectedNavigationItem(position);
-            }
-        });
+        
 
         // For each of the sections in the app, add a tab to the action bar.
         for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
@@ -93,10 +85,29 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                             .setTabListener(this));
         }
         mViewPager.setCurrentItem(1);//manually goes to middle/main activity
+        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                // When swiping between different app sections, select the corresponding tab.
+                // We can also use ActionBar.Tab#select() to do this if we have a reference to the
+                // Tab.
+                actionBar.setSelectedNavigationItem(position);
+        		((HighPriorityAlertsFragment) mAppSectionsPagerAdapter.getFragmentList().get(2)).reloadSavedState();
+            }
+        });
+    }
+    
+    @Override
+    public void onDetachedFromWindow() {
+    	// TODO Auto-generated method stub
+    	if(fragmentList != null)
+    		((HighPriorityAlertsFragment) fragmentList.get(2)).reloadSavedState();
+    	super.onDetachedFromWindow();
     }
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    	
     }
 
     @Override
@@ -107,6 +118,23 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    	int position = tab.getPosition();
+    	switch(position) {
+    	case 0 : {
+    		break;
+    	}
+    	case 1: {
+    		break;
+    	}
+    	case 2:{
+    		((HighPriorityAlertsFragment) mAppSectionsPagerAdapter.getFragmentList().get(2)).reloadSavedState();
+    		break;
+    	}
+    	default : {
+    		
+    	}
+    	}
+    	
     }
 
     /**
@@ -139,6 +167,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             argsHPA.putInt(DummySectionFragment.ARG_SECTION_NUMBER, 2);
             highPriorityAlertsFragment.setArguments(argsHPA);
             fragmentList.add(highPriorityAlertsFragment);
+        }
+        
+        public ArrayList<Fragment> getFragmentList() {
+        	return fragmentList;
         }
 
         @Override
