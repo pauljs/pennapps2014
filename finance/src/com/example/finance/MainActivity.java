@@ -17,7 +17,6 @@
 package com.example.finance;
 
 import java.util.ArrayList;
-
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -53,6 +52,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
 
         // Create the adapter that will return a fragment for each of the three primary sections
         // of the app.

@@ -1,7 +1,10 @@
 package com.example.finance;
 
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,6 +27,7 @@ public class CurrentStocksFragment extends Fragment {
     private View rootView;
     public static String file = "storage";
     public ArrayAdapter<String> listAdapter;
+    public ArrayList<String> tickerList = new ArrayList<String>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -101,6 +105,7 @@ public class CurrentStocksFragment extends Fragment {
 //	}
 
 	public void addStockBtnClicked(View v) {
+		
     	EditText stockEditText = (EditText) rootView.findViewById(R.id.stockEditText);
     	ListView stocksListView = (ListView) rootView.findViewById(R.id.stocksListView);
     	SharedPreferences settings = reloadSavedState(stocksListView);
@@ -108,7 +113,14 @@ public class CurrentStocksFragment extends Fragment {
     	String newCompany = stockEditText.getText().toString();
     	SharedPreferences.Editor editor = settings.edit();
     	editor.putString("currentStock" + newCompany, newCompany);
-    	listAdapter.add(stockEditText.getText().toString());
+    	tickerList.add(newCompany);
+    	//listAdapter.add(stockEditText.getText().toString());
+    	loadStocks();
+        //listAdapter.clear();
+        //for(int i = 0; i < rw.al.size(); ++i){
+        //	listAdapter.add(rw.al.get(i).getMyName() + ": " + rw.al.get(i).getMyCurrentPrice());
+        //}
+        
 		Toast.makeText(getActivity(), "Added", Toast.LENGTH_LONG).show();
 		stockEditText.setText("");
 		editor.commit();
@@ -121,10 +133,23 @@ public class CurrentStocksFragment extends Fragment {
     	SharedPreferences settings = getActivity().getSharedPreferences("storage", 0);
     	for(String key : settings.getAll().keySet()) {
     		String company = settings.getString(key, null);
-    		if(company != null) {
-        		listAdapter.add(company);
+    		if(company != null && key.startsWith("current")) {
+        		tickerList.add(company);
     		}
     	}
+    	loadStocks();
 		return settings;
+	}
+	
+	public void loadStocks(){
+    	ReturnWrapper rw = new ReturnWrapper();
+    	rw.s = new String[tickerList.size()];
+    	listAdapter.clear();
+    	rw.al = listAdapter;
+    	for(int i = 0; i <tickerList.size(); ++i){
+    		rw.s[i] = tickerList.get(i);
+    	}
+    	//Open a bloomberg Session
+        new RequestTasks().execute(rw);
 	}
 }

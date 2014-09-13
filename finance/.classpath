@@ -5,5 +5,45 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/blpapi-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/blpapi-examples-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/ContributionsMktdataExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/ContributionsPageExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/CorrelationExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/EntitlementsVerificationExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/EntitlementsVerificationSubscriptionExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/GenerateTokenExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/IntradayBarExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/IntradayTickExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/LegacyAllOrNoneExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/LegacyLogonStatusExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/LocalMktdataSubscriptionExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/LocalPageSubscriptionExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/MktdataBroadcastPublisherExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/MktdataPublisherExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/NameEnumerationExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/PageBroadcastPublisherExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/PagePublisherExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/RefDataExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/RequestServiceExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SecurityEntitlementsExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SecurityLookupExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/ServiceSchemaDump-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleBlockingRequestExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleCategorizedFieldSearchExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleFieldInfoExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleFieldListExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleFieldSearchExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleHistoryExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleIntradayBarExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleIntradayTickExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleRefDataExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleRefDataOverrideExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleSubscriptionExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SimpleSubscriptionIntervalExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SubscriptionCorrelationExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/SubscriptionWithEventHandlerExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/UserEntitlementsExample-3.7.1-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sean/Desktop/BLPAPI/blpapi_java_3.7.1.1/bin/UserModeExample-3.7.1-1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
