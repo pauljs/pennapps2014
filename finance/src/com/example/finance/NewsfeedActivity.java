@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -55,6 +56,7 @@ public class NewsfeedActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newsfeed);
+		
 		lstPost = (ListView) findViewById(R.id.newsfeedListView);
 		adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_2, android.R.id.text1, lists) {
@@ -90,11 +92,32 @@ public class NewsfeedActivity extends Activity {
 		});
 	}
 	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Log.i("starting", "strting");
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+			Log.i("FINISH", "FINISH");
+			finish();
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
 	public void fillNewsFeed(String symbolForCompany) {
+//		lists.clear();
+//		post_lists.clear();
+		Log.i("performing fill newsfeed", symbolForCompany);
 		rssfeed = new RSSReader();
 		Document xmlFeed = rssfeed
 				.getRSSFromServer("http://finance.yahoo.com/rss/headline?s=" + symbolForCompany);
 		NodeList nodes = xmlFeed.getElementsByTagName("item");
+		
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Element item = (Element) nodes.item(i);
 			HashMap<String, Object> feed = new HashMap<String, Object>();

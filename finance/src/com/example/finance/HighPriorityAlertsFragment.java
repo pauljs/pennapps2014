@@ -43,7 +43,7 @@ public class HighPriorityAlertsFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getActivity(), spinnerAdapter.getItem(position), Toast.LENGTH_LONG).show();
+//				Toast.makeText(getActivity(), spinnerAdapter.getItem(position), Toast.LENGTH_LONG).show();
 			}
 
 			@Override
