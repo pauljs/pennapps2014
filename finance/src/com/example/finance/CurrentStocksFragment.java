@@ -137,7 +137,7 @@ public class CurrentStocksFragment extends Fragment {
         		tickerList.add(company);
     		}
     	}
-    	loadStocks();
+    	//loadStocks();
 		return settings;
 	}
 	
