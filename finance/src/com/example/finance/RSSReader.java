@@ -20,10 +20,8 @@ import android.os.StrictMode;
 
 public class RSSReader {
 	DefaultHttpClient httpClient = new DefaultHttpClient();
-	private String ticker; //the ticker is the company we append to the url
 	
-	public RSSReader(String ticker) {
-		this.ticker = ticker;
+	public RSSReader() {
 	}
 
 	public Document getRSSFromServer(String url) {

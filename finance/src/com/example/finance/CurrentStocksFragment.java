@@ -50,8 +50,7 @@ public class CurrentStocksFragment extends Fragment {
 				// TODO Auto-generated method stub
 				SharedPreferences.Editor editor = getActivity().getSharedPreferences("storage", 0).edit();
 		    	String removingCompany = listAdapter.getItem(position);
-		    	editor.remove(removingCompany).commit();
-		    	editor.clear().commit();
+		    	editor.remove("currentStock" + removingCompany).commit();
 				listAdapter.remove(removingCompany);
 				return false;
 			}
@@ -121,7 +120,7 @@ public class CurrentStocksFragment extends Fragment {
     	SharedPreferences settings = getActivity().getSharedPreferences("storage", 0);
     	for(String key : settings.getAll().keySet()) {
     		String company = settings.getString(key, null);
-    		if(company != null) {
+    		if(company != null && key.startsWith("current")) {
         		listAdapter.add(company);
     		}
     	}

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -36,6 +37,21 @@ public class HighPriorityAlertsFragment extends Fragment {
     	spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	stocksSpinner.setAdapter(spinnerAdapter);
     	stocksSpinner.setPrompt("Select Stock to Add");
+    	stocksSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getActivity(), spinnerAdapter.getItem(position), Toast.LENGTH_LONG).show();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//ListView
     	listAdapter= new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, 0);
     	ListView stocksListView = (ListView) rootView.findViewById(R.id.highPriorityAlertsListView);
@@ -56,8 +72,8 @@ public class HighPriorityAlertsFragment extends Fragment {
 				// TODO Auto-generated method stub
 				SharedPreferences.Editor editor = getActivity().getSharedPreferences("storage", 0).edit();
 		    	String removingCompany = listAdapter.getItem(position);
-		    	editor.remove(removingCompany).commit();
-		    	editor.clear().commit();
+		    	Log.i("REMOVING", "ceiling" + removingCompany);
+		    	editor.remove("ceiling" + removingCompany).commit();
 				listAdapter.remove(removingCompany);
 				return false;
 			}
@@ -74,7 +90,7 @@ public class HighPriorityAlertsFragment extends Fragment {
     	ListView stocksListView = (ListView) rootView.findViewById(R.id.highPriorityAlertsListView);
     	listAdapter= new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, 0);
     	stocksListView.setAdapter(listAdapter);
-    	Log.i("RELOADING HIHG", "RELOADING HIGH");
+    	Log.i("RELOADING HIGH", "RELOADING HIGH");
     	SharedPreferences settings = getActivity().getSharedPreferences("storage", 0);
     	for(String key : settings.getAll().keySet()) {
     		String company = settings.getString(key, null);
@@ -93,14 +109,19 @@ public class HighPriorityAlertsFragment extends Fragment {
     
     public void addHighPriorityAlertBtnClicked(View v) {
 	    	Spinner stocksSpinner = (Spinner) rootView.findViewById(R.id.highPriorityAlertsSpinner);
-	    	stocksSpinner.setAdapter(spinnerAdapter);
+//	    	stocksSpinner.setAdapter(spinnerAdapter);
 	    	stocksSpinner.setPrompt("Select Stock to Add");
 	    	if(stocksSpinner.getSelectedItem() != null) {
 		    	EditText stockAlertValue = (EditText) rootView.findViewById(R.id.highPriorityAlertStockValueEditText);
 		    	ListView highPriorityAlertsListView = (ListView) rootView.findViewById(R.id.highPriorityAlertsListView);
 		    	highPriorityAlertsListView.setAdapter(listAdapter);
-		    	listAdapter.add(stocksSpinner.getSelectedItem().toString() + ": " + stockAlertValue.getText().toString());
-				Toast.makeText(getActivity(), "Added", Toast.LENGTH_LONG).show();
+		    	String company = stocksSpinner.getSelectedItem().toString();
+		    	listAdapter.add(company + ": " + stockAlertValue.getText().toString());
+				Log.i("ADDING", "ceiling" + company + ": " + stockAlertValue.getText().toString());
+		    	SharedPreferences.Editor editor = getActivity().getSharedPreferences("storage", 0).edit();
+		    	editor.putString("ceiling" + company + ": " + stockAlertValue.getText().toString(), company + ": " + stockAlertValue.getText().toString());
+		    	editor.commit();
+		    	Toast.makeText(getActivity(), "Added", Toast.LENGTH_LONG).show();
 	    	}
     }
     
