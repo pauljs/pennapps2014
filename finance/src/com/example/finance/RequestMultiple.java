@@ -59,7 +59,7 @@ public class RequestMultiple {
 			 Message message = iter.next();
 			 Element ReferenceDataResponse = message.asElement();
 			 if (ReferenceDataResponse.hasElement("responseError")) {
-				 System.exit(1);
+//				 System.exit(1);
 			 }
 			 Element securityDataArray = ReferenceDataResponse.getElement("securityData");
 			 int numItems = securityDataArray.numValues();

@@ -1,7 +1,10 @@
 package com.example.finance;
 
+import java.util.ArrayList;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +28,7 @@ public class HighPriorityAlertsFragment extends Fragment {
     public static final String ARG_SECTION_NUMBER = "section_number";
     private View rootView;
     private ArrayAdapter<String> listAdapter;
+    private ArrayList<Security> securities;
     private ArrayAdapter<String> spinnerAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,6 +37,7 @@ public class HighPriorityAlertsFragment extends Fragment {
         Bundle args = getArguments();
         //Spinner
     	Spinner stocksSpinner = (Spinner) rootView.findViewById(R.id.highPriorityAlertsSpinner);
+    	securities = new ArrayList<Security>();
     	reloadSavedState();
     	spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	stocksSpinner.setAdapter(spinnerAdapter);
@@ -96,9 +101,12 @@ public class HighPriorityAlertsFragment extends Fragment {
     		String company = settings.getString(key, null);
     		if(company != null) {
     			if(key.startsWith("currentStock")) {
-    				spinnerAdapter.add(company);
-    			} else if(key.startsWith("ceiling")) {
-    				listAdapter.add(company);
+    				Security security = new Security(company);
+    				securities.add(security);
+    				spinnerAdapter.add(security.getMyName());
+    				if(security.getMyCeiling()!=0){
+    					listAdapter.add(security.getMyName() + ": " + security.getMyCeiling());
+    				}
     			}
     		}
     	}
@@ -115,12 +123,23 @@ public class HighPriorityAlertsFragment extends Fragment {
 		    	EditText stockAlertValue = (EditText) rootView.findViewById(R.id.highPriorityAlertStockValueEditText);
 		    	ListView highPriorityAlertsListView = (ListView) rootView.findViewById(R.id.highPriorityAlertsListView);
 		    	highPriorityAlertsListView.setAdapter(listAdapter);
+		    	SharedPreferences.Editor editor = getActivity().getSharedPreferences("storage", 0).edit();
+		    	editor.clear().commit();
+		    	Security newSecurity = null;
+		    	for(Security security : securities) {
+		    		if(security.getMyName().equals(stocksSpinner.getSelectedItem().toString())) {
+		    			security.setMyCeiling(Double.parseDouble(stockAlertValue.getText().toString()));
+		    			newSecurity = security;
+		    		}
+		    	}
+		    	
+		    	for(Security security : securities) {
+		    		editor.putString("currentStock"+security.getMyName(), security.toString());
+		    	}
+		    	editor.commit();
 		    	String company = stocksSpinner.getSelectedItem().toString();
 		    	listAdapter.add(company + ": " + stockAlertValue.getText().toString());
 				Log.i("ADDING", "ceiling" + company + ": " + stockAlertValue.getText().toString());
-		    	SharedPreferences.Editor editor = getActivity().getSharedPreferences("storage", 0).edit();
-		    	editor.putString("ceiling" + company + ": " + stockAlertValue.getText().toString(), company + ": " + stockAlertValue.getText().toString());
-		    	editor.commit();
 		    	Toast.makeText(getActivity(), "Added", Toast.LENGTH_LONG).show();
 	    	}
     }

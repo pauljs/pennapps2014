@@ -21,7 +21,7 @@ public class Security {
 	public Security(String myName, String myTicker, double myCurrentPrice, double myHigh, 
 					double myLow, double myOpen, double myPrevDayClose, double myCeiling, double myFloor,
 					int socialIndex) {
-		this.myName = myName;
+		this.myName = new StringTokenizer(myName).nextToken();
 		this.myTicker = myTicker;
 		this.myCurrentPrice = myCurrentPrice;
 		this.myHigh = myHigh;
@@ -35,23 +35,23 @@ public class Security {
 	}
 	
 	public Security(String securityAsAString) {
-		StringTokenizer token = new StringTokenizer(securityAsAString);
-		myName = token.nextToken();
-		myTicker = token.nextToken();
-		myCurrentPrice = Double.parseDouble(token.nextToken());
-		myHigh = Double.parseDouble(token.nextToken());
-		myLow = Double.parseDouble(token.nextToken());
-		myOpen = Double.parseDouble(token.nextToken());
-		myPrevDayClose = Double.parseDouble(token.nextToken());
-		myCeiling = Double.parseDouble(token.nextToken());
-		myFloor = Double.parseDouble(token.nextToken());
-		socialIndex = Integer.parseInt(token.nextToken());
+		String[] array = securityAsAString.split("\t");
+		myName = new StringTokenizer(array[0]).nextToken();
+		myTicker = array[1];
+		myCurrentPrice = Double.parseDouble(array[2]);
+		myHigh = Double.parseDouble(array[3]);
+		myLow = Double.parseDouble(array[4]);
+		myOpen = Double.parseDouble(array[5]);
+		myPrevDayClose = Double.parseDouble(array[6]);
+		myCeiling = Double.parseDouble(array[7]);
+		myFloor = Double.parseDouble(array[8]);
+		socialIndex = Integer.parseInt(array[9]);
 	}
 	
 	@Override
 	public String toString() {
-		return myName + " " + myTicker + " " + myCurrentPrice + " " + myHigh + " " + myLow + " " +
-				myOpen + " " + myPrevDayClose + " " + myCeiling + " " + myFloor + " " +  socialIndex;
+		return myName + "\t" + myTicker + "\t" + myCurrentPrice + "\t" + myHigh + "\t" + myLow + "\t" +
+				myOpen + "\t" + myPrevDayClose + "\t" + myCeiling + "\t" + myFloor + "\t" +  socialIndex;
 	}
 	
 	public String getMyName() {

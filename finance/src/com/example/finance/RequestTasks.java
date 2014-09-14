@@ -64,6 +64,7 @@ public class RequestTasks extends AsyncTask <ReturnWrapper, Integer, ArrayList<S
 		 Log.i("makeRequestSuccess", "yayyyy");
 		 mySecurity = rm.getMySL();
 		 
+		 
 		 //Log.i("INFO", sl.get(0).getMyName());
 		 //Log.i("list price", "" +sl.get(0).getMyCurrentPrice());
 		 /*for(int i = 0; i < sl.size(); ++i){
