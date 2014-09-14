@@ -2,10 +2,14 @@ package com.example.finance;
 
 import java.util.ArrayList;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -138,11 +142,24 @@ public class HighPriorityAlertsFragment extends Fragment {
 		    	highPriorityAlertsListView.setAdapter(listAdapter);
 		    	SharedPreferences.Editor editor = getActivity().getSharedPreferences("storage", 0).edit();
 		    	editor.clear().commit();
-		    	Security newSecurity = null;
 		    	for(Security security : securities) {
 		    		if(security.getMyName().equals(stocksSpinner.getSelectedItem().toString())) {
 		    			security.setMyCeiling(Double.parseDouble(stockAlertValue.getText().toString()));
-		    			newSecurity = security;
+		    			Intent resultIntent = new Intent(getActivity(), NewsfeedActivity.class);
+		    			String companyNameStr = security.getMyName();
+						SharedPreferences preferences = getActivity().getSharedPreferences("storage", 0);
+						resultIntent.putExtra("company", preferences.getString("currentStock"+companyNameStr, security.toString()));
+		    			PendingIntent resultPendingIntent = PendingIntent.getActivity(getActivity(), 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		    			final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity())
+			    		    .setSmallIcon(R.drawable.floon)
+			    		    .setContentTitle(security.getMyName() + " has floon!")
+			    		    .setContentText("High Alert");
+		    			mBuilder.setContentIntent(resultPendingIntent);
+		    			if(Double.parseDouble(stockAlertValue.getText().toString()) >= security.getMyCeiling()) {
+		    				int mNotificationId = 001;
+		    				NotificationManager mNotifyMgr = (NotificationManager) getActivity().getSystemService(android.content.Context.NOTIFICATION_SERVICE );
+		    				mNotifyMgr.notify(mNotificationId, mBuilder.build());
+		    			}
 		    		}
 		    	}
 		    	

@@ -981,7 +981,8 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_launcher=0x7f020057;
+        public static final int floon=0x7f020057;
+        public static final int ic_launcher=0x7f020058;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -995,18 +996,19 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050055;
+        public static final int action_settings=0x7f050059;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int addHighPriorityAlertBtn=0x7f050045;
+        public static final int addLowPriorityAlertBtn=0x7f050049;
         public static final int addStockBtn=0x7f050040;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
-        public static final int ceilingValTextView=0x7f05004e;
+        public static final int ceilingValTextView=0x7f050052;
         public static final int checkbox=0x7f05002d;
-        public static final int closeValTextView=0x7f050053;
+        public static final int closeValTextView=0x7f050057;
         public static final int collapseActionView=0x7f05000d;
-        public static final int companyTextView=0x7f05004b;
-        public static final int currentPrice=0x7f050049;
+        public static final int companyTextView=0x7f05004f;
+        public static final int currentPrice=0x7f05004d;
         public static final int default_activity_button=0x7f050028;
         public static final int demo_collection_button=0x7f050042;
         public static final int demo_external_activity=0x7f050043;
@@ -1017,12 +1019,12 @@ containing a value of this type.
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
-        public static final int floorValTextView=0x7f050052;
+        public static final int floorValTextView=0x7f050056;
         public static final int highPriorityAlertStockValueEditText=0x7f050046;
         public static final int highPriorityAlertsListView=0x7f050047;
         public static final int highPriorityAlertsSpinner=0x7f050044;
-        public static final int highTextView=0x7f05004c;
-        public static final int highValTextView=0x7f05004d;
+        public static final int highTextView=0x7f050050;
+        public static final int highValTextView=0x7f050051;
         public static final int home=0x7f050014;
         public static final int homeAsUp=0x7f050005;
         public static final int icon=0x7f05002a;
@@ -1030,15 +1032,18 @@ containing a value of this type.
         public static final int image=0x7f050027;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
-        public static final int lowTextView=0x7f050050;
-        public static final int lowValTextView=0x7f050051;
+        public static final int lowPriorityAlertStockValueEditText=0x7f05004a;
+        public static final int lowPriorityAlertsListView=0x7f05004b;
+        public static final int lowPriorityAlertsSpinner=0x7f050048;
+        public static final int lowTextView=0x7f050054;
+        public static final int lowValTextView=0x7f050055;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
-        public static final int newsfeedListView=0x7f050054;
+        public static final int newsfeedListView=0x7f050058;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
         public static final int notifyBtn=0x7f05003e;
-        public static final int openValTextView=0x7f05004f;
+        public static final int openValTextView=0x7f050053;
         public static final int pager=0x7f05003c;
         public static final int pager_title_strip=0x7f05003d;
         public static final int progress_circular=0x7f050018;
@@ -1058,13 +1063,13 @@ containing a value of this type.
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
-        public static final int socialIndex=0x7f05004a;
+        public static final int socialIndex=0x7f05004e;
         public static final int split_action_bar=0x7f05001e;
         public static final int stockEditText=0x7f05003f;
         public static final int stocksListView=0x7f050041;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
-        public static final int ticker=0x7f050048;
+        public static final int ticker=0x7f05004c;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
@@ -1128,8 +1133,9 @@ containing a value of this type.
         public static final int fragment_section_dummy=0x7f03001c;
         public static final int fragment_section_launchpad=0x7f03001d;
         public static final int high_priority_alerts=0x7f03001e;
-        public static final int newsfeed=0x7f03001f;
-        public static final int support_simple_spinner_dropdown_item=0x7f030020;
+        public static final int low_priority_alerts=0x7f03001f;
+        public static final int newsfeed=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;

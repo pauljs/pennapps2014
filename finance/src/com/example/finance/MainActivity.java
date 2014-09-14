@@ -84,7 +84,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                             .setText(mAppSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
-        mViewPager.setCurrentItem(1);//manually goes to middle/main activity
+        actionBar.selectTab(actionBar.getTabAt(1));;//manually goes to middle/main activity
         mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -92,6 +92,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 // We can also use ActionBar.Tab#select() to do this if we have a reference to the
                 // Tab.
                 actionBar.setSelectedNavigationItem(position);
+        		((LowPriorityAlertsFragment) mAppSectionsPagerAdapter.getFragmentList().get(0)).reloadSavedState();
         		((HighPriorityAlertsFragment) mAppSectionsPagerAdapter.getFragmentList().get(2)).reloadSavedState();
             }
         });
@@ -148,7 +149,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             super(fm);
             fragmentList = new ArrayList<Fragment>();
             //Current Stocks adding
-        	Fragment floorAlertFragment = new FloorAlertFragment();
+        	Fragment floorAlertFragment = new LowPriorityAlertsFragment();
             Bundle argsDummy = new Bundle();
             argsDummy.putInt(DummySectionFragment.ARG_SECTION_NUMBER, 0);
             floorAlertFragment.setArguments(argsDummy);
@@ -291,6 +292,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     
     public void addHighPriorityAlertBtnClicked(View v) {
 		((HighPriorityAlertsFragment) mAppSectionsPagerAdapter.getItem(2)).addHighPriorityAlertBtnClicked(v);
+    }
+    
+    public void addLowPriorityAlertBtnClicked(View v) {
+		((LowPriorityAlertsFragment) mAppSectionsPagerAdapter.getItem(0)).addLowPriorityAlertBtnClicked(v);
     }
    
 }
