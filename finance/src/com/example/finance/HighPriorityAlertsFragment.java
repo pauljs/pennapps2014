@@ -136,8 +136,8 @@ public class HighPriorityAlertsFragment extends Fragment {
 	    	Spinner stocksSpinner = (Spinner) rootView.findViewById(R.id.highPriorityAlertsSpinner);
 //	    	stocksSpinner.setAdapter(spinnerAdapter);
 	    	stocksSpinner.setPrompt("Select Stock to Add");
-	    	if(stocksSpinner.getSelectedItem() != null) {
-		    	EditText stockAlertValue = (EditText) rootView.findViewById(R.id.highPriorityAlertStockValueEditText);
+	    	EditText stockAlertValue = (EditText) rootView.findViewById(R.id.highPriorityAlertStockValueEditText);
+	    	if(stocksSpinner.getSelectedItem() != null && stockAlertValue.getText() != null) {
 		    	ListView highPriorityAlertsListView = (ListView) rootView.findViewById(R.id.highPriorityAlertsListView);
 		    	highPriorityAlertsListView.setAdapter(listAdapter);
 		    	SharedPreferences.Editor editor = getActivity().getSharedPreferences("storage", 0).edit();
@@ -171,6 +171,8 @@ public class HighPriorityAlertsFragment extends Fragment {
 		    	listAdapter.add(company + ": " + stockAlertValue.getText().toString());
 				Log.i("ADDING", "ceiling" + company + ": " + stockAlertValue.getText().toString());
 		    	Toast.makeText(getActivity(), "Added", Toast.LENGTH_LONG).show();
+	    	} else {
+	    		Toast.makeText(rootView.getContext(), "Please insert valid data", Toast.LENGTH_LONG).show();
 	    	}
     }
     

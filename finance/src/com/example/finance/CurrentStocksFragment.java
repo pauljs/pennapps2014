@@ -129,7 +129,7 @@ public class CurrentStocksFragment extends Fragment {
 
 	public void addStockBtnClicked(View v) {
 		EditText stockEditText = (EditText) rootView.findViewById(R.id.stockEditText);
-		if(stockEditText.getText() != null) {
+		if(stockEditText.getText() != null && !"".equals(stockEditText.getText().toString())) {
 			ListView stocksListView = (ListView) rootView.findViewById(R.id.stocksListView);
 			//SharedPreferences settings = getActivity().getSharedPreferences("storage", 0);
 			listAdapter= new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, 0);
@@ -287,13 +287,19 @@ public class CurrentStocksFragment extends Fragment {
 		}
 
 		protected void onPostExecute(ArrayList<Security> result) {
+			boolean approved = false;
 			for(int i = 0; i < mySecurity.size(); ++i){
+				approved = true;
 				myList.add(mySecurity.get(i).getMyName() + ": " + mySecurity.get(i).getMyCurrentPrice());
 			}
 			listAdapter = myList;
 			if(newCompany) {
-				Log.i("CALCULATING SOCIAL INDEX", "GO");
-				calculateSocialIndex(mySecurity);
+				if(approved) {
+					Log.i("CALCULATING SOCIAL INDEX", "GO");
+					calculateSocialIndex(mySecurity);
+				} else {
+					Toast.makeText(rootView.getContext(), "Please enter valid ticker symbol", Toast.LENGTH_LONG).show();
+				}
 			}
 		}
 	}

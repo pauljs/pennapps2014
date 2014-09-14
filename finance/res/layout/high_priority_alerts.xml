@@ -16,10 +16,10 @@
 
         <Button
             android:id="@+id/addHighPriorityAlertBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="88dp"
             android:layout_height="wrap_content"
-            android:text="+" 
-            android:onClick="addHighPriorityAlertBtnClicked"/>
+            android:onClick="addHighPriorityAlertBtnClicked"
+            android:text="+" />
 
     </LinearLayout>
 
