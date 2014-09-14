@@ -76,9 +76,22 @@ public class HighPriorityAlertsFragment extends Fragment {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				SharedPreferences.Editor editor = getActivity().getSharedPreferences("storage", 0).edit();
+		    	editor.clear().commit();
+		    	for(Security security : securities) {
+		    		String[] array = listAdapter.getItem(position).split(":");
+		    		if(security.getMyName().equals(array[0])) {
+		    			security.setMyCeiling(0);
+		    		}
+		    	}
+		    	
+		    	for(Security security : securities) {
+		    		editor.putString("currentStock"+security.getMyName(), security.toString());
+		    	}
+		    	editor.commit();
+		    	
 		    	String removingCompany = listAdapter.getItem(position);
-		    	Log.i("REMOVING", "ceiling" + removingCompany);
-		    	editor.remove("ceiling" + removingCompany).commit();
+//		    	Log.i("REMOVING", "ceiling" + removingCompany);
+//		    	editor.remove("ceiling" + removingCompany).commit();
 				listAdapter.remove(removingCompany);
 				return false;
 			}
