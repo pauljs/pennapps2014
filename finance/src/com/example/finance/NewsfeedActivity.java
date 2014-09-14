@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -50,11 +51,35 @@ public class NewsfeedActivity extends Activity {
 	List<String> lists = new ArrayList<String>();
 	ArrayAdapter<String> adapter;
 	RSSReader rssfeed;
+	private TextView companyName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newsfeed);
+		Security security = new Security(getIntent().getExtras().getString("company"));
+		TextView ticker = (TextView) findViewById(R.id.ticker);
+		TextView currentPrice = (TextView) findViewById(R.id.currentPrice);
+		TextView socialIndex = (TextView) findViewById(R.id.socialIndex);
+		companyName = (TextView) findViewById(R.id.companyTextView);
+		TextView hi = (TextView) findViewById(R.id.highValTextView);
+		TextView lo = (TextView) findViewById(R.id.lowValTextView);
+		TextView ceiling = (TextView) findViewById(R.id.ceilingValTextView);
+		TextView floor = (TextView) findViewById(R.id.floorValTextView);
+		TextView open = (TextView) findViewById(R.id.openValTextView);
+		TextView close = (TextView) findViewById(R.id.closeValTextView);
+		
+		ticker.setText(security.getMyTicker());
+		currentPrice.setText("" + security.getMyCurrentPrice());
+		socialIndex.setText("" + security.getSocialIndex());
+		companyName.setText(security.getMyName());
+		hi.setText("" + security.getMyHigh());
+		lo.setText("" + security.getMyLow());
+		ceiling.setText("" + security.getMyCeiling());
+		floor.setText("" + security.getMyFloor());
+		open.setText("" + security.getMyOpen());
+		close.setText("" + security.getMyPrevDayClose());
+
 		lstPost = (ListView) findViewById(R.id.newsfeedListView);
 		adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_2, android.R.id.text1, lists) {
@@ -73,28 +98,37 @@ public class NewsfeedActivity extends Activity {
 			}
 
 		};
-		String company = getIntent().getExtras().getString("company");
-		MyAsyncTask task = new MyAsyncTask("http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=" + company + "&callback=YAHOO.Finance.SymbolSuggest.ssCallback");
+		MyAsyncTask task = new MyAsyncTask("http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=" + security.getMyName() + "&callback=YAHOO.Finance.SymbolSuggest.ssCallback");
 		task.execute();
-		lstPost.setAdapter(adapter);
-		lstPost.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setData(Uri.parse(post_lists.get(position).get(key_link).toString()));
-				startActivity(intent);
-			}
-		});
+		
+	}
+	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Log.i("starting", "strting");
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+			Log.i("FINISH", "FINISH");
+			finish();
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 	
 	public void fillNewsFeed(String symbolForCompany) {
+//		lists.clear();
+//		post_lists.clear();
+		Log.i("performing fill newsfeed", symbolForCompany);
 		rssfeed = new RSSReader();
 		Document xmlFeed = rssfeed
 				.getRSSFromServer("http://finance.yahoo.com/rss/headline?s=" + symbolForCompany);
 		NodeList nodes = xmlFeed.getElementsByTagName("item");
+		
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Element item = (Element) nodes.item(i);
 			HashMap<String, Object> feed = new HashMap<String, Object>();
@@ -104,6 +138,24 @@ public class NewsfeedActivity extends Activity {
 			feed.put(key_date, rssfeed.getValue(item, key_date));
 			post_lists.add(feed);
 			lists.add(feed.get(key_title).toString());
+		}
+		if(adapter.getCount() == 0) {
+			MyAsyncTask task = new MyAsyncTask("http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=" + companyName.getText().toString() + "&callback=YAHOO.Finance.SymbolSuggest.ssCallback");
+			task.execute();
+		} else {
+			Log.i("THIS SIZE IS ", adapter.getCount() + "");
+			lstPost.setAdapter(adapter);
+			lstPost.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setData(Uri.parse(post_lists.get(position).get(key_link).toString()));
+					startActivity(intent);
+				}
+			});
 		}
 	}
 	
