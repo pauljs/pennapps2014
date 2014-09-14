@@ -203,7 +203,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         	String title = "";
         	switch(position) {
         	case 0 : {
-        		title = "Low Priority\nAlerts";
+        		title = "Low \nAlerts";
         		break;
         	}
         	case 1: {
@@ -211,7 +211,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         		break;
         	}
         	case 2:{
-        		title = "High Priority\nAlerts";
+        		title = "High \nAlerts";
         		break;
         	}
         	default : {

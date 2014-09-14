@@ -59,9 +59,9 @@ public class NewsfeedActivity extends Activity {
 		setContentView(R.layout.newsfeed);
 		Security security = new Security(getIntent().getExtras().getString("company"));
 		TextView ticker = (TextView) findViewById(R.id.ticker);
-		TextView currentPrice = (TextView) findViewById(R.id.currentPrice);
-		TextView socialIndex = (TextView) findViewById(R.id.socialIndex);
-		companyName = (TextView) findViewById(R.id.companyTextView);
+		TextView currentPrice = (TextView) findViewById(R.id.currentPriceValTextView);
+		TextView socialIndex = (TextView) findViewById(R.id.socialIndexValTextView);
+		companyName = (TextView) findViewById(R.id.companyNameTextView);
 		TextView hi = (TextView) findViewById(R.id.highValTextView);
 		TextView lo = (TextView) findViewById(R.id.lowValTextView);
 		TextView ceiling = (TextView) findViewById(R.id.ceilingValTextView);

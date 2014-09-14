@@ -7,42 +7,83 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="3" >
+        android:orientation="vertical" 
+        android:weightSum="2">
 
-        <TextView
-            android:id="@+id/ticker"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ticker"
-            android:textAppearance="?android:attr/textAppearanceLarge" 
-            android:layout_gravity="center"
-            android:layout_weight="1"/>
-            
-        <TextView
-            android:id="@+id/currentPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="Price"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_weight="1" >
 
-        <TextView
-            android:id="@+id/socialIndex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="S Index"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                android:id="@+id/ticker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Ticker"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/PriceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price: "
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/currentPriceValTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Val"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" 
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/companyNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.39"
+                android:text="Company"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/socialIndexTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Social Index: "
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/socialIndexValTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.13"
+                    android:gravity="left"
+                    android:text="Val"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/companyTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Company" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,9 +107,9 @@
                 android:id="@+id/highValTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:text="Val"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="2" />
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/ceilingTextView"
@@ -101,12 +142,11 @@
                 android:layout_weight="2"
                 android:text="Val"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
             android:weightSum="8" >
 
             <TextView
@@ -121,9 +161,9 @@
                 android:id="@+id/lowValTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:text="Val"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="2" />
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/floorTextView"
@@ -156,9 +196,7 @@
                 android:layout_weight="2"
                 android:text="Val"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
         </LinearLayout>
-
     </LinearLayout>
 
     <ListView
