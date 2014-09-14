@@ -1,5 +1,7 @@
 package com.example.finance;
 
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ public class CurrentStocksFragment extends Fragment {
     public static final String ARG_SECTION_NUMBER = "section_number";
     private View rootView;
     public static String file = "storage";
+    private ArrayList<Security> securityList;
     public ArrayAdapter<String> listAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,26 +105,46 @@ public class CurrentStocksFragment extends Fragment {
 	public void addStockBtnClicked(View v) {
     	EditText stockEditText = (EditText) rootView.findViewById(R.id.stockEditText);
     	ListView stocksListView = (ListView) rootView.findViewById(R.id.stocksListView);
-    	SharedPreferences settings = reloadSavedState(stocksListView);
-    	
-    	String newCompany = stockEditText.getText().toString();
+//    	SharedPreferences settings = reloadSavedState(stocksListView);
+    	SharedPreferences settings = getActivity().getSharedPreferences("storage", 0);
+		listAdapter= new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, 0);
+		stocksListView.setAdapter(listAdapter);
+		
+		String newCompanyStr = stockEditText.getText().toString();
+    	//INSERT SEANS FUNCTION HERE
+    	loadStocks(newCompanyStr);
     	SharedPreferences.Editor editor = settings.edit();
-    	editor.putString("currentStock" + newCompany, newCompany);
+//    	editor.putString(newCompany, newCompany);
     	listAdapter.add(stockEditText.getText().toString());
 		Toast.makeText(getActivity(), "Added", Toast.LENGTH_LONG).show();
 		stockEditText.setText("");
 		editor.commit();
     }
 
+	private void loadStocks(String newCompanyStr) {
+		// TODO Auto-generated method stub
+		ReturnWrapper rw = new ReturnWrapper();
+		rw.s = new String[securityList.size() + 1];
+		for(int i = 0; i < rw.s.length; i++) {
+			rw.s[i] = securityList.get(i).getMyTicker();
+		}
+		rw.s[rw.s.length - 1] = newCompanyStr;
+		new RequestTasks().execute(rw);
+		listAdapter = rw.al;
+	}
+
 	private SharedPreferences reloadSavedState(ListView stocksListView) {
+		securityList.clear();
 		listAdapter= new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, 0);
     	stocksListView.setAdapter(listAdapter);
 
     	SharedPreferences settings = getActivity().getSharedPreferences("storage", 0);
     	for(String key : settings.getAll().keySet()) {
-    		String company = settings.getString(key, null);
-    		if(company != null && key.startsWith("current")) {
-        		listAdapter.add(company);
+    		String companyStr = settings.getString(key, null);
+    		if(companyStr != null && key.startsWith("current")) {
+    			Security company = new Security(companyStr);
+    			securityList.add(company);
+    			listAdapter.add(company.getMyName() + ": " + company.getMyCurrentPrice());
     		}
     	}
 		return settings;
